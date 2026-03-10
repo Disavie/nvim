@@ -1,15 +1,22 @@
 -- ~/.config/nvim/lua/davis/plugins/colorschemes.lua
-local default_color = "rose-pine-main"
+local default_color = "dawnfox"
 
 function ColorMyPencils(color)
 	color = color or default_color
 	vim.cmd.colorscheme(color)
+    vim.o.background = "light"
 
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	--vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 return {
+    {
+    "catppuccin/nvim",
+    },
+    {
+    "sainnhe/sonokai",
+    },
     {
         'zenbones-theme/zenbones.nvim',
         dependencies = {"rktjmp/lush.nvim"},

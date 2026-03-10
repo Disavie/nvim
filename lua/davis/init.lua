@@ -2,7 +2,7 @@ require("davis.remaps")
 require("davis.options")
 require("davis.lazy")
 
-vim.cmd.colorschem("catppuccin-macchiato")
+--vim.cmd.colorscheme("catppuccin-macchiato")
 
 vim.cmd([[
 highlight Normal guibg=NONE ctermbg=NONE
@@ -13,3 +13,4 @@ highlight NormalNC guibg=NONE ctermbg=NONE
 require("lazy").setup({
     {"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"}
 })
+ColorMyPencils()
