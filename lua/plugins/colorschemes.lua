@@ -1,10 +1,10 @@
 -- ~/.config/nvim/lua/davis/plugins/colorschemes.lua
-local default_color = "dawnfox"
+local default_color = "dayfox"
 
 function ColorMyPencils(color)
 	color = color or default_color
 	vim.cmd.colorscheme(color)
-    vim.o.background = "light"
+    --vim.o.background = "light"
 
 	--vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
