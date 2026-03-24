@@ -1,5 +1,5 @@
 -- ~/.config/nvim/lua/davis/plugins/colorschemes.lua
-local default_color = "dayfox"
+local default_color = "brightburn"
 
 function ColorMyPencils(color)
 	color = color or default_color
