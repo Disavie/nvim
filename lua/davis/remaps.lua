@@ -20,16 +20,6 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-
--- grab pwd to system clipboard
-vim.keymap.set("n"," pwd", ":let @+ = getcwd()<CR>")
-
 --ESC to go to normal mode in terminal mode
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
---resource
---[[
-vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
-end)
-]]
 
