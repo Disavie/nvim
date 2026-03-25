@@ -28,4 +28,19 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.clipboard = "unnamedplus"
+--vim.opt.clipboard = "unnamedplus"
+vim.g.clipboard = {
+  name = "osc52",
+  copy = {
+    ["+"] = function(lines, _)
+      require("vim.ui.clipboard.osc52").copy("+")(lines)
+    end,
+    ["*"] = function(lines, _)
+      require("vim.ui.clipboard.osc52").copy("*")(lines)
+    end,
+  },
+  paste = {
+    ["+"] = function() return {vim.fn.getreg("+")} end,
+    ["*"] = function() return {vim.fn.getreg("*")} end,
+  },
+}
