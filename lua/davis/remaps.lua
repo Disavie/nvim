@@ -11,7 +11,8 @@ vim.keymap.set("n","<C-d>","<C-d>zz")
 vim.keymap.set("n","<C-u>","<C-u>zz")
 
 
---vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = "unnamedplus"
+--[[
 vim.g.clipboard = {
   name = "osc52",
   copy = {
@@ -27,6 +28,7 @@ vim.g.clipboard = {
     ["*"] = function() return {vim.fn.getreg("*")} end,
   },
 }
+]]
 
 
 --greatest remap ever -> paste with ' p' to paste and not overwrite clipboard register
