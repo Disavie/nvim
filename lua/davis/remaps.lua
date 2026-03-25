@@ -10,6 +10,25 @@ vim.keymap.set("n","<leader>ww",":w<CR>")
 vim.keymap.set("n","<C-d>","<C-d>zz")
 vim.keymap.set("n","<C-u>","<C-u>zz")
 
+
+--vim.opt.clipboard = "unnamedplus"
+vim.g.clipboard = {
+  name = "osc52",
+  copy = {
+    ["+"] = function(lines, _)
+      require("vim.ui.clipboard.osc52").copy("+")(lines)
+    end,
+    ["*"] = function(lines, _)
+      require("vim.ui.clipboard.osc52").copy("*")(lines)
+    end,
+  },
+  paste = {
+    ["+"] = function() return {vim.fn.getreg("+")} end,
+    ["*"] = function() return {vim.fn.getreg("*")} end,
+  },
+}
+
+
 --greatest remap ever -> paste with ' p' to paste and not overwrite clipboard register
 vim.keymap.set("x", "<leader>p", [["_dP]])
 -- next greatest remap ever : asbjornHaland
