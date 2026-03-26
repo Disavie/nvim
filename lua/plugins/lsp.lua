@@ -34,7 +34,7 @@ return {
                 "clangd",
                 "lua_ls",
                 "rust_analyzer",
-                "gopls",
+                --                "gopls",
                 "vtsls",
                 "tailwindcss",
                 "pyright",
@@ -131,7 +131,7 @@ return {
                 severity = { min = vim.diagnostic.severity.HINT }, -- show all severities
             },
             signs = true,       -- show symbols in the gutter
-            update_in_insert = false, -- optionally true if you want live inline updates
+            update_in_insert = true, -- optionally true if you want live inline updates
             underline = true,   -- underline the problematic text
             float = {
                 focusable = false,
