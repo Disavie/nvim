@@ -1,13 +1,16 @@
 -- ~/.config/nvim/lua/davis/plugins/colorschemes.lua
-local default_color = "brightburn"
+local default_color = "tokyonight-moon"
 
 function ColorMyPencils(color)
 	color = color or default_color
 	vim.cmd.colorscheme(color)
     --vim.o.background = "light"
 
-	--vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+    vim.api.nvim_set_hl(0, "Identifier", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Variable", { bg = "none" })
 end
 
 return {
