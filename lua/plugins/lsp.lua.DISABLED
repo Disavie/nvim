@@ -1,3 +1,4 @@
+--[[
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -61,7 +62,7 @@ return {
         -- ==========================
         -- Define server configs
         -- ==========================
-        local servers = {}
+        --local servers = {}
 
         -- Default LSP setup
         local function default_server(name)
@@ -133,7 +134,7 @@ return {
             virtual_text = {
                 prefix = '●',
                 spacing = 2,
-                severity = { min = vim.diagnostic.severity.HINT },
+                severity = { min = vim.diagnostic.severity.ERROR },
             },
             signs = false,
             update_in_insert = true,
@@ -149,3 +150,4 @@ return {
         })
     end
 }
+]]
