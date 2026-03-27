@@ -1,4 +1,3 @@
---remaps
 
 -- .o = :set
 vim.o.wrap = false

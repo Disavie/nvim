@@ -15,124 +15,129 @@ return {
     },
 
     config = function()
+        -- ==========================
+        -- Formatting with Conform
+        -- ==========================
         require("conform").setup({
-            formatters_by_ft = {
-            }
+            formatters_by_ft = {}
         })
+
+        -- ==========================
+        -- LSP Capabilities
+        -- ==========================
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
+
         local capabilities = vim.tbl_deep_extend(
             "force",
             {},
             vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
+            cmp_lsp.default_capabilities()
+        )
 
-        require("fidget").setup({})
+        -- ==========================
+        -- Fidget (LSP progress)
+        -- ==========================
+        --require("fidget").setup({})
+
+        -- ==========================
+        -- Mason setup
+        -- ==========================
         require("mason").setup()
-        require("mason-lspconfig").setup({
+        local mason_lsp = require("mason-lspconfig")
+
+        mason_lsp.setup({
             ensure_installed = {
                 "clangd",
                 "lua_ls",
                 "rust_analyzer",
-                --                "gopls",
                 "vtsls",
                 "tailwindcss",
                 "pyright",
                 "marksman",
             },
-            handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
-
-                zls = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.zls.setup({
-                        root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
-                        settings = {
-                            zls = {
-                                enable_inlay_hints = true,
-                                enable_snippets = true,
-                                warn_style = true,
-                            },
-                        },
-                    })
-                    vim.g.zig_fmt_parse_errors = 0
-                    vim.g.zig_fmt_autosave = 0
-
-                end,
-                ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = {
-                                    version = 'LuaJIT',
-                                },
-                                diagnostics = {
-                                    globals = { 'vim' },
-                                },
-                                workspace = {
-                                    library = vim.api.nvim_get_runtime_file("", true),
-                                    checkThirdParty = false,
-                                },
-                                format = {
-                                    enable = true,
-                                    -- Put format options here
-                                    -- NOTE: the value should be STRING!!
-                                    defaultConfig = {
-                                        indent_style = "space",
-                                        indent_size = "2",
-                                    }
-                                },
-                            }
-                        }
-                    }
-                end,
-                ["tailwindcss"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.tailwindcss.setup({
-                        capabilities = capabilities,
-                        filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "heex" },
-                    })
-                end,
-            }
         })
 
+        -- ==========================
+        -- Define server configs
+        -- ==========================
+        local servers = {}
+
+        -- Default LSP setup
+        local function default_server(name)
+            vim.lsp.config[name] = {
+                capabilities = capabilities,
+            }
+            vim.lsp.enable(name)
+        end
+
+        -- Lua LSP
+        vim.lsp.config["lua_ls"] = {
+            capabilities = capabilities,
+            settings = {
+                Lua = {
+                    runtime = { version = "LuaJIT" },
+                    diagnostics = { globals = { "vim" } },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file("", true),
+                        checkThirdParty = false,
+                    },
+                    format = {
+                        enable = true,
+                        defaultConfig = {
+                            indent_style = "space",
+                            indent_size = "2",
+                        }
+                    }
+                }
+            }
+        }
+        vim.lsp.enable("lua_ls")
+
+
+        -- Other servers (clangd, rust_analyzer, pyright, vtsls, marksman)
+        for _, srv in ipairs({ "clangd", "rust_analyzer", "pyright", "vtsls", "marksman" }) do
+            default_server(srv)
+        end
+
+        -- ==========================
+        -- Completion setup
+        -- ==========================
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    require('luasnip').lsp_expand(args.body)
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
-                { name = "copilot", group_index = 2, max_item_count = 2},
-                { name = 'nvim_lsp', max_item_count = 2 },
-                { name = 'luasnip', max_item_count = 2 }, -- For luasnip users.
+                { name = "copilot", group_index = 2 },
+                { name = 'nvim_lsp' },
+                { name = 'luasnip' },
             }, {
-                { name = 'buffer', max_item_count =2 },
+                { name = 'buffer' },
             })
         })
 
+        -- ==========================
+        -- Diagnostics setup
+        -- ==========================
         vim.diagnostic.config({
             virtual_text = {
-                prefix = '●',  -- you can also use '▶', '■', etc.
+                prefix = '●',
                 spacing = 2,
-                severity = { min = vim.diagnostic.severity.HINT }, -- show all severities
+                severity = { min = vim.diagnostic.severity.HINT },
             },
-            signs = true,       -- show symbols in the gutter
-            update_in_insert = true, -- optionally true if you want live inline updates
-            underline = true,   -- underline the problematic text
+            signs = false,
+            update_in_insert = true,
+            underline = true,
             float = {
                 focusable = false,
                 style = "minimal",
