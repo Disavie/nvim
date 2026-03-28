@@ -16,7 +16,6 @@ return {
 
   opts = {
 
-    range = { 'prefix' },
     -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
     -- 'super-tab' for mappings similar to vscode (tab to accept)
     -- 'enter' for enter to accept
@@ -50,6 +49,7 @@ return {
 
     completion = {
 
+        keyword = { range = 'prefix' },
         menu = {auto_show = false},
         ghost_text = {enabled = true},
     },
