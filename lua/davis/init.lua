@@ -2,6 +2,7 @@
 require("davis.remaps")
 require("davis.options")
 require("davis.lazy")
+require("davis.lsp")
 
 --vim.cmd.colorscheme("catppuccin-macchiato")
 

@@ -1,13 +1,7 @@
-#include <stdalign.h>
-#include "stdalign.h"
-#include <stdalign.h>
 #include <stdio.h>
 
 int main(){
-    printf("asda");
+    int butt = 0;
+    printf(butt);
 
-    return 0;
 }
-
-
-

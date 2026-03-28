@@ -43,8 +43,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 
 
-
-
 -- lsp keybinds
 vim.keymap.set("n", "<leader>gD", function() vim.lsp.buf.definition() end, opts)
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.hover, opts)
+
+
