@@ -10,7 +10,7 @@ for _, server in ipairs(servers) do
     })
 
     vim.lsp.enable(server)
-    print("Enabled "  ..server)
+    --print("Enabled "  ..server)
 end
 --[[
 vim.api.nvim_create_autocmd('LspAttach', {
