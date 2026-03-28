@@ -1,5 +1,5 @@
 -- ~/.config/nvim/lua/davis/plugins/colorschemes.lua
-local default_color = "zenbones"
+local default_color = "sonokai"
 
 function ColorMyPencils(color)
 	color = color or default_color
