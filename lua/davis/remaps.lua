@@ -29,8 +29,10 @@ vim.keymap.set('n', 'q:', '<nop>')
 
 
 -- lsp keybinds
-vim.keymap.set("n", "<leader>gD", function() vim.lsp.buf.definition() end, opts)
---vim.keymap.set("n", "<leader>gd", vim.lsp.buf.hover, opts)
-vim.keymap.set("n", "<M-space>", vim.lsp.buf.hover, opts)
+vim.keymap.set("n", "<C-Cr>", function() vim.lsp.buf.definition() end, opts)
+
+vim.keymap.set("n", "<C-S-Cr>", vim.lsp.buf.references, opts)
+vim.keymap.set("n", "<M-Cr>", vim.lsp.buf.hover, opts)
+
 
 
