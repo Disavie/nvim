@@ -2,7 +2,7 @@
 vim.g.mapleader=" "
 
 vim.keymap.set("n","<leader>ex",":Ex<CR>")
-vim.keymap.set("n","<leader>evc",":e ~/.config/nvim <CR> ")
+vim.keymap.set("n","<leader>evc",":e ~/dotfiles/nvim/ <CR> ")
 
 vim.keymap.set("n","<leader>ww",":w<CR>")
 
@@ -30,9 +30,8 @@ vim.keymap.set('n', 'q:', '<nop>')
 
 -- lsp keybinds
 vim.keymap.set("n", "<C-Cr>", function() vim.lsp.buf.definition() end, opts)
-
 vim.keymap.set("n", "<C-S-Cr>", vim.lsp.buf.references, opts)
 vim.keymap.set("n", "<M-Cr>", vim.lsp.buf.hover, opts)
-
-
-
+vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+--For some reason I can't seem to get this remap to work
+--vim.keymap.set("n", "<C-S-r>", function() vim.lsp.buf.rename() end, opts)
