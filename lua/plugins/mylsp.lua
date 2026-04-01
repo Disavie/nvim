@@ -11,7 +11,9 @@ return {
             "clangd",
             "pyright",
             "marksman",
+            "ols",
         }
+
 
         -- Gen default settings
         local cmp_capabilities = require("blink.cmp").get_lsp_capabilities()
