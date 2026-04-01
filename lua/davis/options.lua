@@ -3,7 +3,8 @@
 vim.o.wrap = false
 vim.o.relativenumber = true
 vim.o.number = true
---vim.o.smarttab = true
+vim.o.smarttab = true
+vim.o.cursorline = true
 
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
