@@ -33,10 +33,7 @@ vim.keymap.set("n", "<C-Cr>", function() vim.lsp.buf.definition() end, opts)
 vim.keymap.set("n", "<C-S-Cr>", vim.lsp.buf.references, opts)
 vim.keymap.set("n", "<M-Cr>", vim.lsp.buf.hover, opts)
 vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-<<<<<<< Updated upstream
 --For some reason I can't seem to get this remap to work
 vim.keymap.set("n", "<C-S-r>", function() vim.lsp.buf.rename() end, opts)
-=======
 
 vim.keymap.set("n", "<C-S-r>", function() vim.lsp.buf.rename() end, opts) --need to disable foot Ctrl+Shift+r serach bind to use this
->>>>>>> Stashed changes
