@@ -36,4 +36,9 @@ vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
 --For some reason I can't seem to get this remap to work
 vim.keymap.set("n", "<C-S-r>", function() vim.lsp.buf.rename() end, opts)
 
-vim.keymap.set("n", "<C-S-r>", function() vim.lsp.buf.rename() end, opts) --need to disable foot Ctrl+Shift+r serach bind to use this
+vim.keymap.set("n", "<C-b>n" , ":bn<CR>")
+vim.keymap.set("n", "<C-b><C-n>" , ":bn<CR>")
+
+--vim.keymap.del("n","<C-b>", nil)
+vim.keymap.set("n", "<C-b>p" , ":bp<CR>")
+vim.keymap.set("n", "<C-b><C-p>" , ":bp<CR>")
