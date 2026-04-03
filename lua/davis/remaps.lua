@@ -1,7 +1,7 @@
 --remaps
 vim.g.mapleader=" "
 
-vim.keymap.set("n","<leader>ex",":NvimTreeOpen<CR>")
+vim.keymap.set("n","<leader>ex",function() vim.cmd("NvimTreeToggle") end)
 vim.keymap.set("n", "<leader>evc", function()
   vim.cmd("NvimTreeOpen /home/davis/dotfiles/nvim/")
 end)
