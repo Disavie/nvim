@@ -27,22 +27,24 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-
---vim.opt.clipboard = "unnamedplus"
-vim.g.clipboard = "osc52"
-
+-- Check if the terminal supports clipboard (e.g., through unnamedplus)
+if vim.fn.has('clipboard') == 1 then
+    vim.opt.clipboard = "unnamedplus"
+else
+    vim.g.clipboard = "osc52"
+end
 
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
 vim.g.newtrw_browse_split = 4
-vim.g.netrw_winsize = 10
+vim.g.netrw_winsize = 20
+vim.g.netrw_keepdir = 1 
 
-vim.o.equalalways = false
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+-- vim.o.equalalways = false
+-- vim.opt.splitright = true
+-- vim.opt.splitbelow = true
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+
 
 --[[
 vim.api.nvim_create_autocmd("FileType", {
