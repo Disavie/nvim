@@ -3,7 +3,7 @@ vim.g.mapleader=" "
 
 vim.keymap.set("n","<leader>ex",function() vim.cmd("NvimTreeToggle") end)
 vim.keymap.set("n", "<leader>evc", function()
-  vim.cmd("NvimTreeopen /home/davis/dotfiles/nvim/")
+  vim.cmd("NvimTreeOpen /home/davis/dotfiles/nvim/")
 end)
 
 vim.keymap.set("n","<leader>ww",":w<CR>")

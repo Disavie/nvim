@@ -34,6 +34,14 @@ else
     vim.g.clipboard = "osc52"
 end
 
+-- highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost',{
+    group = vim.api.nvim_create_augroup("highlight-on-yank", { clear = true } ) ,
+    callback = function()
+        vim.highlight.on_yank()
+    end
+})
+
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
 vim.g.newtrw_browse_split = 4
