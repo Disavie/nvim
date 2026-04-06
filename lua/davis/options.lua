@@ -27,12 +27,18 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
--- Check if the terminal supports clipboard (e.g., through unnamedplus)
-if vim.fn.has('clipboard') == 1 then
-    vim.opt.clipboard = "unnamedplus"
-else
-    vim.g.clipboard = "osc52"
-end
+--vim.opt.clipboard = "unnamedplus"
+vim.g.clipboard = {
+  name = 'osc52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
 
 -- highlight on yank
 vim.api.nvim_create_autocmd('TextYankPost',{
