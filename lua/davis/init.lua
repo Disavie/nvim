@@ -2,6 +2,7 @@
 require("davis.remaps")
 require("davis.options")
 require("davis.lazy")
+require("davis.floatingbuffers")
 --require("davis.lsp")
 
 vim.cmd([[

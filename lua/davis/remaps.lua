@@ -37,9 +37,9 @@ vim.keymap.set("n", "<M-Cr>", vim.lsp.buf.hover, opts)
 vim.keymap.set("n", "<C-S-r>", function() vim.lsp.buf.rename() end, opts)
 
 
-vim.keymap.set("n", "<leader>gd", function() vim.lsp.buf.definition() end, opts)
-vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
-vim.keymap.set("n", "<leader><leader>", vim.lsp.buf.hover, opts)
+vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+vim.keymap.set("n", "g<leader>", vim.lsp.buf.hover, opts)
 vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
 
 
