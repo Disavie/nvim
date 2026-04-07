@@ -45,6 +45,7 @@ local state = {
     if vim.api.nvim_buf_is_valid(opts.buf) then
         buf = opts.buf
         state.buffer_ids = opts.buffer_ids
+        -- todo check for new open buffers
     else
         print("Remaking")
         buf = vim.api.nvim_create_buf(false, true)
@@ -162,6 +163,6 @@ vim.api.nvim_create_user_command("FloatTerm", function()
     end
 end, {} )
 
-vim.keymap.set('n','<leader><leader>',function()
+vim.keymap.set('n','<leader>t',function()
     vim.cmd("FloatTerm")
 end)
