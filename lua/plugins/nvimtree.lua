@@ -22,6 +22,10 @@ return {
                             staged = "+",    -- * sign for changed git files
                         },
                         default = "",
+                        folder = {
+                            default = ">",
+                            open = "v",
+                        }
                     },
                 },
             },

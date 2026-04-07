@@ -1,16 +1,24 @@
 -- ~/.config/nvim/lua/davis/plugins/colorschemes.lua
 local default_color = "sonokai"
+local default_bg = "dark"
 
-function ColorMyPencils(color)
-	color = color or default_color
+ ColorMyPencils = function(opts)
+
+    local opts = opts or {}
+
+    local color = opts.color or default_color
+    local bg = opts.bg or default_bg
+
 	vim.cmd.colorscheme(color)
-    --vim.o.background = "dark"
+    vim.o.background = bg
 
+    --vim.api.nvim_set_hl(0, "CursorLine", {  bold = true })
+    --[[
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-
     vim.api.nvim_set_hl(0, "Identifier", { bg = "none" })
     vim.api.nvim_set_hl(0, "Variable", { bg = "none" })
+    ]]
 end
 
 return {
@@ -105,8 +113,6 @@ return {
                     italic = true,
                 },
             })
-
-            ColorMyPencils();
         end
     },
 

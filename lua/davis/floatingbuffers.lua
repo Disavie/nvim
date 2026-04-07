@@ -4,31 +4,51 @@ local state = {
         win = -1,
     },
     buffer_ids = {},
-    ordered_names = {},
 }
 
  local function create_float(opts)
 
      local parent_win = vim.api.nvim_get_current_win()
-
      opts = opts or {}
-
      local ui = vim.api.nvim_list_uis()[1]
-
      local width = opts.width or math.floor(ui.width * 0.3)
      local height = opts.height or math.floor(ui.height * 0.3)
-
      local row = math.floor((ui.height - height) / 2)
      local col = math.floor((ui.width - width) / 2)
 
+
     local buf = nil
+
+    local function reload_buffers()
+        for _, val in ipairs(vim.api.nvim_list_bufs()) do
+            if vim.bo[val].buflisted then
+                local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(val), ":~:.")
+                if name ~= "" then
+                    state.buffer_ids[name] = val
+                end
+            end
+        end
+    end
+
+    local init_buffer_list = function()
+
+        state.buffer_ids = {}  -- rebuilt each reload
+        local names = {}
+
+        reload_buffers()
+        for name, id in pairs(state.buffer_ids) do
+            table.insert(names,name)
+        end
+        vim.api.nvim_buf_set_lines(buf,0,-1, false,names)
+
+    end
     if vim.api.nvim_buf_is_valid(opts.buf) then
         buf = opts.buf
         state.buffer_ids = opts.buffer_ids
-        state.ordered_names = opts.ordered_names
     else
         print("Remaking")
         buf = vim.api.nvim_create_buf(false, true)
+        init_buffer_list()
         vim.api.nvim_set_option_value("modifiable",true, { buf = buf} )
 
     end
@@ -46,8 +66,13 @@ local state = {
 
         for name, b in pairs(state.buffer_ids) do
             if not current_set[name] then
-                state.buffer_ids[name] = nil
-                vim.cmd("bd"..b)
+
+                if state.buffer_ids[name] == vim.api.nvim_win_get_buf(parent_win) then
+                    print("Cannot delete parent window")
+                else
+                    state.buffer_ids[name] = nil
+                    vim.cmd("bd"..b)
+                end
             end
         end
     end
@@ -55,24 +80,7 @@ local state = {
     -- Updating the buffer list
     -- Get list of active buffers
     --
-    local function reload_buffers()
-        for _, val in ipairs(vim.api.nvim_list_bufs()) do
-            if vim.bo[val].buflisted then
-                local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(val), ":~:.")
-                if name ~= "" then
-                    state.buffer_ids[name] = val
-                    table.insert(state.ordered_names, name)
-                end
-            end
-        end
-    end
-
     reload_buffers()
-    local names = {}
-    for name, id in pairs(state.buffer_ids) do
-        table.insert(names,name)
-    end
-    vim.api.nvim_buf_set_lines(buf,0,-1, false,names)
 
     -- Open floating window
     local win = vim.api.nvim_open_win(buf, true, {
@@ -148,13 +156,12 @@ vim.api.nvim_create_user_command("FloatTerm", function()
         state.floating = create_float( {
             buf = state.floating.buf,
             buffer_ids = state.buffer_ids,
-            ordered_names = state.ordered_names,
         })
     else
         vim.api.nvim_win_hide(state.floating.win)
     end
 end, {} )
 
-vim.keymap.set('n','<leader>t',function()
+vim.keymap.set('n','<leader><leader>',function()
     vim.cmd("FloatTerm")
 end)
