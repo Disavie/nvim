@@ -1,5 +1,5 @@
 -- ~/.config/nvim/lua/davis/plugins/colorschemes.lua
-local default_color = "sonokai"
+local default_color = "gruvbox"
 local default_bg = "dark"
 
  ColorMyPencils = function(opts)
@@ -12,16 +12,19 @@ local default_bg = "dark"
 	vim.cmd.colorscheme(color)
     vim.o.background = bg
 
-    --vim.api.nvim_set_hl(0, "CursorLine", {  bold = true })
-    --[[
+    vim.api.nvim_set_hl(0, "CursorLine", {  bold = true })
+   
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     vim.api.nvim_set_hl(0, "Identifier", { bg = "none" })
     vim.api.nvim_set_hl(0, "Variable", { bg = "none" })
-    ]]
+    
 end
 
 return {
+    {
+        "scottmckendry/cyberdream.nvim",
+    },
     {
     "catppuccin/nvim",
     },
@@ -42,14 +45,8 @@ return {
     {
         "erikbackman/brightburn.vim",
     },
-
     {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        opts = {},
-        config = function()
-            ColorMyPencils()
-        end
+        "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000
     },
     {
         "ellisonleao/gruvbox.nvim",
@@ -63,9 +60,9 @@ return {
                 italic = {
                     strings = false,
                     emphasis = false,
-                    comments = false,
+                    comments = true,
                     operators = false,
-                    folds = false,
+                    folds = true,
                 },
                 strikethrough = true,
                 invert_selection = false,
@@ -73,11 +70,11 @@ return {
                 invert_tabline = false,
                 invert_intend_guides = false,
                 inverse = true, -- invert background for search, diffs, statuslines and errors
-                contrast = "", -- can be "hard", "soft" or empty string
+                contrast = "hard", -- can be "hard", "soft" or empty string
                 palette_overrides = {},
                 overrides = {},
                 dim_inactive = false,
-                transparent_mode = false,
+                transparent_mode = true,
             })
         end,
     },
@@ -93,7 +90,7 @@ return {
                 styles = {
                     -- Style to be applied to different syntax groups
                     -- Value is any valid attr-list value for `:help nvim_set_hl`
-                    comments = { italic = false },
+                    comments = { italic = true },
                     keywords = { italic = false },
                     -- Background styles. Can be "dark", "transparent" or "normal"
                     sidebars = "dark", -- style for sidebars, see below

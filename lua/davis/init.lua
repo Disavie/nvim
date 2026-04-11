@@ -14,4 +14,7 @@ require("lazy").setup({
     {"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"}
 })
 --ColorMyPencils({color = "dayfox" , bg = "light"})
+--ColorMyPencils({color = "gruvbox" , bg = "light"})
+--ColorMyPencils({color = "zenbones" , bg = "dark"})
+--ColorMyPencils({color = "rose-pine" , bg = "dark"})
 ColorMyPencils()
