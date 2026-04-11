@@ -17,4 +17,5 @@ require("lazy").setup({
 --ColorMyPencils({color = "gruvbox" , bg = "light"})
 --ColorMyPencils({color = "zenbones" , bg = "dark"})
 --ColorMyPencils({color = "rose-pine" , bg = "dark"})
-ColorMyPencils()
+--ColorMyPencils()
+vim.cmd.colorscheme( "gruvbox")
