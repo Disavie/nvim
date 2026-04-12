@@ -7,7 +7,7 @@ vim.keymap.set("n", "<leader>evc", function()
   vim.cmd("NvimTreeOpen /home/davis/dotfiles/nvim/")
 end)
 
-vim.keymap.set("n","<leader>ww",":w<CR>")
+vim.keymap.set("n","<leader>ww",":w!<CR>")
 
 vim.keymap.set("n","<C-d>","<C-d>zz")
 vim.keymap.set("n","<C-u>","<C-u>zz")

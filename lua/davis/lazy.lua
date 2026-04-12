@@ -26,10 +26,15 @@ require("lazy").setup({
   checker = { enabled = false },
 })
 
+require('nvim-treesitter').install{ 'odin','cpp', 'python', 'c', 'lua', 'vim', 'vimdoc', 'query', 'markdown', 'markdown_inline' }
+
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { '<filetype>' },
-  callback = function() vim.treesitter.start()
+  pattern ={ 'odin','cpp', 'python', 'c', 'lua', 'vim', 'vimdoc', 'query', 'markdown', 'markdown_inline' }, 
+  callback = function()
+    vim.treesitter.start()                                    -- highlighting
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'     -- folds
+    vim.wo.foldmethod = 'expr'
+    vim.bo.indentexpr = 'v:lua.require"nvim-treesitter".indentexpr()' -- indentation
   end,
 })
-
 
