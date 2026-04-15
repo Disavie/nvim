@@ -1,3 +1,10 @@
+-- Hello
+
+vim.o.foldmethod = "indent"
+vim.o.colorcolumn = "80"
+vim.o.foldlevel = 99
+
+--
 --disabled swp file
 vim.opt.swapfile = false
 --dont keep backup while working
