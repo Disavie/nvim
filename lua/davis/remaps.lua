@@ -4,8 +4,9 @@ vim.g.mapleader=" "
 
 vim.keymap.set("n","<leader>ex",function() vim.cmd("NvimTreeToggle") end)
 vim.keymap.set("n", "<leader>evc", function()
-  vim.cmd("NvimTreeOpen /home/davis/dotfiles/nvim/")
+  vim.cmd("NvimTreeOpen /home/davis/.config/nvim/")
 end)
+
 
 vim.keymap.set("n","<leader>ww",":w!<CR>")
 
@@ -55,6 +56,26 @@ vim.keymap.set("n", "<C-b><C-n>" , ":bn<CR>")
 --vim.keymap.del("n","<C-b>", nil)
 vim.keymap.set("n", "<C-b>p" , ":bp<CR>")
 vim.keymap.set("n", "<C-b><C-p>" , ":bp<CR>")
+
+
+--- open current word in a man page if we are in a c/cpp file
+vim.api.nvim_create_autocmd({'FileType'}, {
+    pattern = { 'c', 'cpp'},
+    callback = function ()
+    -- opens in vim split
+    vim.keymap.set("n","gm", function()
+        local word = vim.fn.expand("<cWORD>")
+            vim.cmd({cmd = "Man", args = {"3",word}})
+        end)
+    -- opens in new fg process
+
+    vim.keymap.set("n","gM", function()
+        local word = vim.fn.expand("<cWORD>")
+            print("Hello")
+            vim.cmd("!man " .. word)
+        end)
+    end
+})
 
 vim.keymap.set("n", "!", ":!")
 

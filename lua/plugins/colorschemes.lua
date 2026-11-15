@@ -2,12 +2,12 @@
 local default_color = "gruvbox"
 local default_bg = "dark"
 
- ColorMyPencils = function(opts)
+ColorMyPencils = function(opts)
 
     local opts = opts or {}
 
-    local color = opts.color or default_color
     local bg = opts.bg or default_bg
+    local color = opts.color or default_color
 
 	vim.cmd.colorscheme(color)
     vim.o.background = bg

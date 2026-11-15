@@ -20,13 +20,16 @@ vim.o.smarttab = true
 vim.o.cursorline = true
 vim.o.cursorcolumn = true
 
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.opt.tabstop = 2
+
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 
 
 vim.opt.smartindent = true
+vim.opt.smarttab =true
+vim.opt.autoindent = true
 --undodirectory 
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 --undo across closing
@@ -56,6 +59,14 @@ vim.api.nvim_create_autocmd('TextYankPost',{
     group = vim.api.nvim_create_augroup("highlight-on-yank", { clear = true } ) ,
     callback = function()
         vim.highlight.on_yank()
+    end
+})
+
+
+vim.api.nvim_create_autocmd({'FileType'}, {
+    pattern = { 'txt', 'markdown'},
+    callback = function() 
+      vim.opt_local.wrap = true
     end
 })
 

@@ -4,6 +4,7 @@ return {
         'saghen/blink.cmp',
     },
 
+
     config = function()
 
         local servers = {
@@ -12,6 +13,7 @@ return {
             "pyright",
             "marksman",
             "ols",
+            "asm",
         }
 
 
@@ -25,23 +27,23 @@ return {
             vim.lsp.enable(server)
         end
 
-        vim.diagnostic.config({
-            virtual_text = {
-                prefix = '●',
-                spacin = 2,
-                severity = { min = vim.diagnostic.severity.ERROR },
-            },
-            signs = false,
-            update_in_insert = false,
-            underline = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-})
+    vim.diagnostic.config({
+        virtual_text = {
+            prefix = '●',
+            spacing = 2,
+        },
+        signs = false,
+        update_in_insert = true,
+        underline = true,
+        float = {
+            focusable = false,
+            style = "minimal",
+            border = "rounded",
+            -- source = "always",
+            header = "",
+            prefix = "",
+        },
+    })
+
     end,
 }

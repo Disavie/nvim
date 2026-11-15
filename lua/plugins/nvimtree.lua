@@ -31,7 +31,7 @@ return {
             },
 
             filters = {
-                dotfiles = true,  -- Hide dotfiles (e.g., .git, .vimrc)
+                dotfiles = false,  -- Hide dotfiles (e.g., .git, .vimrc)
             },
         })
     end,
