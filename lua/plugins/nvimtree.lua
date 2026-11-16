@@ -1,8 +1,5 @@
 return {
     "nvim-tree/nvim-tree.lua",
-    dependencies = {
---        "nvim-tree/nvim-web-devicons",  -- File icons (not necessary for your simple icons, but good to have)
-    },
     config = function()
         require("nvim-tree").setup({
             view = {
@@ -13,15 +10,16 @@ return {
                 icons = {
                     show = {
                         folder = false,
-                        file = true,  -- Ensure files are also shown
+                        folder_arrow = false,
+                        file = true,
                         git = true,
                     },
                     glyphs = {
+                        default = "-",
                         git = {
                             unstaged = "*",  -- + sign for unstaged git files
                             staged = "+",    -- * sign for changed git files
                         },
-                        default = "",
                         folder = {
                             default = ">",
                             open = "v",
@@ -31,7 +29,7 @@ return {
             },
 
             filters = {
-                dotfiles = false,  -- Hide dotfiles (e.g., .git, .vimrc)
+                dotfiles = false,  -- true to hide dotfiles (e.g., .git, .vimrc)
             },
         })
     end,
