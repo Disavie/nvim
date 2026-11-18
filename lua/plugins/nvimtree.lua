@@ -6,7 +6,7 @@ return {
                 width = 30,  -- Width of the tree window
             },
             renderer = {
-                group_empty = true,  -- Group empty folders together
+                group_empty = false,  -- Group empty folders together
                 icons = {
                     show = {
                         folder = false,

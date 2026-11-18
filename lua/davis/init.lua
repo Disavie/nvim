@@ -14,9 +14,9 @@ require("lazy").setup({
     {"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"}
 })
 --ColorMyPencils({color = "dayfox" , bg = "light"})
---ColorMyPencils({color = "gruvbox" , bg = "light"})
+ColorMyPencils({color = "gruvbox" , bg = "light"})
 --ColorMyPencils({color = "seoulbones" , bg = "dark"})
 --ColorMyPencils({color = "zenburned" , bg = "dark"})
 --ColorMyPencils({color = "rose-pine" , bg = "dark"})
 --ColorMyPencils()
-vim.cmd.colorscheme("sonokai")
+--vim.cmd.colorscheme("ashki")

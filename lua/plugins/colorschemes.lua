@@ -9,13 +9,13 @@ ColorMyPencils = function(opts)
     local bg = opts.bg or default_bg
     local color = opts.color or default_color
 
-	vim.cmd.colorscheme(color)
+    vim.cmd.colorscheme(color)
     vim.o.background = bg
 
     vim.api.nvim_set_hl(0, "CursorLine", {  bold = true })
    
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     vim.api.nvim_set_hl(0, "Identifier", { bg = "none" })
     vim.api.nvim_set_hl(0, "Variable", { bg = "none" })
     
@@ -111,6 +111,15 @@ return {
                 },
             })
         end
+    },
+    {
+      "nlkli/ashki.nvim",
+      lazy = false,
+      priority = 1000,
+      config = function()
+        require("ashki").setup()
+        require("ashki").load()
+      end,
     },
 
 
